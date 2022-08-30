@@ -1,12 +1,13 @@
 <template>
 <div class="container">
-    <FormHeader></FormHeader>
+  <form-header></form-header>
     <q-card class="my-card">
       <q-card-section>
-        <p>Зарегестрируйтесь чтобы начать  работать: </p>
+        <p>Войдите в свой аккаунт: </p>
         <form @submit.prevent="register">
           <q-input
             type="text"
+            v-model="login"
             :rules="[
              val => val.includes('@') || 'Пожалуйста, ввдите почту или телефон',
              val => !!val || 'Пожалуйста, введите почту или телефон'
@@ -15,7 +16,6 @@
             bg-color="cyan-1"
             class="form-input"
             outlined
-            v-model="login"
             label="Телефон или email">
           </q-input>
 
@@ -41,10 +41,10 @@
           ></q-btn>
         </form>
         <hr/>
-        <FormBottomButton></FormBottomButton>
+        <form-bottom-button></form-bottom-button>
       </q-card-section>
     </q-card>
-    <ArlabsLogo></ArlabsLogo>
+  <arlabs-logo></arlabs-logo>
   </div>
 </template>
 
@@ -52,10 +52,16 @@
 import ArlabsLogo from "../components/ArlabsLogo.vue";
 import FormBottomButton from "../components/FormBottomButton.vue";
 import FormHeader from "../components/FormHeader.vue";
+import AuthenticationLayout from "../layouts/AuthenticationLayout.vue";
+
+//import useVuelidate from '@vuelidate/core'
+//import {required, minLength, email, or} from '@vuelidate/validators'
+
 
 export default {
   name: "Authorization",
   components: {
+    AuthenticationLayout,
     ArlabsLogo,
     FormBottomButton,
     FormHeader

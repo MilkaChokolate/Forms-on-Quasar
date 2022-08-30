@@ -1,6 +1,6 @@
 <template>
-  <div v-show="!successRegistered" class="container">
-    <FormHeader></FormHeader>
+  <div v-if="!successRegistered" class="container">
+    <form-header></form-header>
     <q-card class="my-card">
       <q-card-section>
         <h6>Подтвердите регистрацию:</h6>
@@ -29,8 +29,8 @@
     <ArlabsLogo></ArlabsLogo>
   </div>
 
-  <div v-show="successRegistered" class="container">
-    <FormHeader></FormHeader>
+  <div v-else class="container">
+    <form-header></form-header>
     <q-card class="my-card">
       <q-card-section>
         <p>Вы успешно зарегистрировались</p>
@@ -42,7 +42,7 @@
           ></q-btn>
       </q-card-section>
     </q-card>
-    <ArlabsLogo></ArlabsLogo>
+    <arlabs-logo></arlabs-logo>
   </div>
 
 </template>
@@ -61,14 +61,15 @@ export default {
   data() {
     return {
       code: '',
+      userName: '',
       successRegistered: false
     }
   },
   methods: {
     verify() {
       axios.post('https://photo.dedos.ru/api/authentication/verify',{
-        "code": this.code,
-        "username": this.userName
+        "username": this.$route.query.user,
+        "code": this.$route.params.code
       })
        .then((response) => {
           this.successRegistered = true;

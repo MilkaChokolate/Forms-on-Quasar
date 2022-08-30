@@ -16,7 +16,7 @@ const routes = [
         name: 'authorization'
     },
     {
-        path: '/authentication/verify/:username',
+        path: '/authentication/verify/:code?user=:username',
         component: Verify,
         name: 'verify'
     }

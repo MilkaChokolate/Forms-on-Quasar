@@ -1,6 +1,6 @@
 <template>
-  <div v-show="!userExist" class="container">
-    <FormHeader></FormHeader>
+  <div v-if="!userExist" class="container">
+    <form-header></form-header>
     <q-card class="my-card">
       <q-card-section>
         <p>Зарегестрируйтесь чтобы начать работать: </p>
@@ -68,14 +68,14 @@
           ></q-btn>
         </form>
         <hr/>
-        <FormBottomButton></FormBottomButton>
+        <form-bottom-button></form-bottom-button>
       </q-card-section>
     </q-card>
-    <ArlabsLogo></ArlabsLogo>
+    <arlabs-logo></arlabs-logo>
   </div>
 
-  <div v-show="userExist" class="container">
-    <FormHeader></FormHeader>
+  <div v-else class="container">
+    <form-header></form-header>
     <q-card class="my-card">
       <q-card-section>
         <p>Такой пользователь уже существует</p>
@@ -93,7 +93,7 @@
           ></q-btn>
       </q-card-section>
     </q-card>
-    <ArlabsLogo></ArlabsLogo>
+    <arlabs-logo></arlabs-logo>
   </div>
 
 </template>
