@@ -1,6 +1,5 @@
 <template>
-  <div v-if="!userExist" class="container">
-    <form-header></form-header>
+  <q-container v-if="!userExist">
     <q-card class="my-card">
       <q-card-section>
         <p>Зарегестрируйтесь чтобы начать работать: </p>
@@ -71,11 +70,9 @@
         <form-bottom-button></form-bottom-button>
       </q-card-section>
     </q-card>
-    <arlabs-logo></arlabs-logo>
-  </div>
+  </q-container>
 
   <div v-else class="container">
-    <form-header></form-header>
     <q-card class="my-card">
       <q-card-section>
         <p>Такой пользователь уже существует</p>
@@ -93,23 +90,18 @@
           ></q-btn>
       </q-card-section>
     </q-card>
-    <arlabs-logo></arlabs-logo>
   </div>
 
 </template>
 
 <script>
-import FormHeader from "../components/FormHeader.vue";
 import FormBottomButton from "../components/FormBottomButton.vue";
-import ArlabsLogo from "../components/ArlabsLogo.vue";
-import axios from "axios"
+import axios from "axios";
 
 export default {
   name: "Registration",
   components: {
-    ArlabsLogo,
     FormBottomButton,
-    FormHeader
   },
   data() {
     return {
@@ -122,7 +114,7 @@ export default {
   },
   methods: {
     register() {
-      axios.post('https://photo.dedos.ru/api/authentication/register',{
+      axios.post(import.meta.env.VITE_REGISTER_URL,{
         "phone": this.phoneNumber,
         "email": this.email,
         "password": this.password,

@@ -4,6 +4,7 @@ import './style.css'
 import App from './App.vue'
 import router from "/src/router/index";
 import Maska from 'maska'
+import store from '/src/store/index'
 
 // Import icon libraries
 import '@quasar/extras/material-icons/material-icons.css'
@@ -15,4 +16,5 @@ createApp(App)
   .use(Quasar, {plugins: {}})
   .use(router)
   .use(Maska)
+  .use(store)
   .mount('#app')

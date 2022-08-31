@@ -1,6 +1,5 @@
 <template>
-<div class="container">
-  <form-header></form-header>
+<q-container>
     <q-card class="my-card">
       <q-card-section>
         <p>Войдите в свой аккаунт: </p>
@@ -44,14 +43,11 @@
         <form-bottom-button></form-bottom-button>
       </q-card-section>
     </q-card>
-  <arlabs-logo></arlabs-logo>
-  </div>
+  </q-container>
 </template>
 
 <script>
-import ArlabsLogo from "../components/ArlabsLogo.vue";
 import FormBottomButton from "../components/FormBottomButton.vue";
-import FormHeader from "../components/FormHeader.vue";
 import AuthenticationLayout from "../layouts/AuthenticationLayout.vue";
 
 //import useVuelidate from '@vuelidate/core'
@@ -62,9 +58,7 @@ export default {
   name: "Authorization",
   components: {
     AuthenticationLayout,
-    ArlabsLogo,
     FormBottomButton,
-    FormHeader
   },
   data() {
     return {

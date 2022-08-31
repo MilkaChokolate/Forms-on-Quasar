@@ -1,8 +1,8 @@
 <template>
-<div class="hrefs">
+<q-container class="row justify-around">
   <a href="#">Не удается войти в систему?</a>
   <a href="#">Регистрация аккаунта</a>
-</div>
+</q-container>
 
 </template>
 
@@ -13,18 +13,5 @@ export default {
 </script>
 
 <style scoped>
-.hrefs {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-.hrefs a {
-  box-sizing: border-box;
-  text-decoration: none;
-  display: inline-block;
-  max-width: 129px;
-  font-size: 14px;
-  color: #0052CC;
-  text-align: center;
-}
+
 </style>

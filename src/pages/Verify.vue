@@ -1,22 +1,9 @@
 <template>
-  <div v-if="!successRegistered" class="container">
-    <form-header></form-header>
+  <q-container v-if="!successRegistered">
     <q-card class="my-card">
       <q-card-section>
-        <h6>Подтвердите регистрацию:</h6>
-        <p>Мы отправили код вам на почту</p>
+        <p>Подтверлить регстрацию:</p>
         <form @submit.prevent="verify">
-
-          <q-input
-            type="text"
-            lazy-rules
-            bg-color="cyan-1"
-            class="form-input"
-            outlined
-            v-model="code"
-            label="Код">
-          </q-input>
-
           <q-btn
             type="submit"
             color="primary"
@@ -26,11 +13,9 @@
         </form>
       </q-card-section>
     </q-card>
-    <ArlabsLogo></ArlabsLogo>
-  </div>
+  </q-container>
 
   <div v-else class="container">
-    <form-header></form-header>
     <q-card class="my-card">
       <q-card-section>
         <p>Вы успешно зарегистрировались</p>
@@ -42,21 +27,17 @@
           ></q-btn>
       </q-card-section>
     </q-card>
-    <arlabs-logo></arlabs-logo>
   </div>
 
 </template>
 
 <script>
-import ArlabsLogo from "../components/ArlabsLogo.vue";
-import FormHeader from "../components/FormHeader.vue";
 import axios from "axios";
+
 
 export default {
   name: "Verify",
   components: {
-    ArlabsLogo,
-    FormHeader
   },
   data() {
     return {
@@ -67,7 +48,7 @@ export default {
   },
   methods: {
     verify() {
-      axios.post('https://photo.dedos.ru/api/authentication/verify',{
+      axios.post(import.meta.env.VITE_VERIFY_URL,{
         "username": this.$route.query.user,
         "code": this.$route.params.code
       })
@@ -83,7 +64,5 @@ export default {
 </script>
 
 <style scoped>
-h6 {
-  margin: 0;
-}
+
 </style>
