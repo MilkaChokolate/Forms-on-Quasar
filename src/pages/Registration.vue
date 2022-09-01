@@ -1,5 +1,5 @@
 <template>
-  <q-container v-if="!userExist">
+  <q-page v-if="!userExist">
     <q-card class="my-card">
       <q-card-section>
         <p>Зарегестрируйтесь чтобы начать работать: </p>
@@ -70,9 +70,9 @@
         <form-bottom-button></form-bottom-button>
       </q-card-section>
     </q-card>
-  </q-container>
+  </q-page>
 
-  <div v-else class="container">
+  <q-page v-else>
     <q-card class="my-card">
       <q-card-section>
         <p>Такой пользователь уже существует</p>
@@ -90,7 +90,7 @@
           ></q-btn>
       </q-card-section>
     </q-card>
-  </div>
+  </q-page>
 
 </template>
 

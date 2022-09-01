@@ -1,5 +1,5 @@
 <template>
-  <q-container v-if="!successRegistered">
+  <q-page v-if="!successRegistered">
     <q-card class="my-card">
       <q-card-section>
         <p>Подтверлить регстрацию:</p>
@@ -13,9 +13,9 @@
         </form>
       </q-card-section>
     </q-card>
-  </q-container>
+  </q-page>
 
-  <div v-else class="container">
+  <q-page v-else>
     <q-card class="my-card">
       <q-card-section>
         <p>Вы успешно зарегистрировались</p>
@@ -27,7 +27,7 @@
           ></q-btn>
       </q-card-section>
     </q-card>
-  </div>
+  </q-page>
 
 </template>
 

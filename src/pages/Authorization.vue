@@ -1,5 +1,5 @@
 <template>
-<q-container>
+<q-page>
     <q-card class="my-card">
       <q-card-section>
         <p>Войдите в свой аккаунт: </p>
@@ -43,7 +43,7 @@
         <form-bottom-button></form-bottom-button>
       </q-card-section>
     </q-card>
-  </q-container>
+  </q-page>
 </template>
 
 <script>
