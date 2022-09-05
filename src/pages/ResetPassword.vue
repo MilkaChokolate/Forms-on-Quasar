@@ -1,35 +1,25 @@
 <template>
-<q-page>
+  <q-page>
     <q-card class="my-card">
       <q-card-section>
-        <p>Войдите в свой аккаунт: </p>
-        <form @submit.prevent="logIn">
+        <h6>Возникли сложности со входом?</h6>
+        <p>Мы отправим вам ссылку для воостановления</p>
+        <form @submit.prevent="reset">
           <q-input
             type="text"
-            v-model="login"
+            v-model="email"
             :rules="authenticationStore.rulesForEmail"
             lazy-rules
             bg-color="cyan-1"
             class="form-input"
             outlined
-            label="Телефон или email">
-          </q-input>
-
-          <q-input
-            type="password"
-            lazy-rules
-            :rules="authenticationStore.rulesForPassword"
-            bg-color="cyan-1"
-            class="form-input"
-            outlined
-            v-model="password"
-            label="Пароль">
+            label="Адрес электронной почты">
           </q-input>
 
           <q-btn
             type="submit"
             color="primary"
-            label="Продолжить"
+            label="Отправить ссылку для восстановления"
             class="full-width form-button"
           ></q-btn>
         </form>
@@ -42,24 +32,21 @@
 
 <script>
 import FormBottomButton from "../components/FormBottomButton.vue";
-
-import { useAuthenticationStore } from "../stores/authentication";
-
-import {ref} from 'vue'
+import {useAuthenticationStore} from "../stores/authentication.js";
+import {ref} from "vue";
 
 export default {
-  name: "Authorization",
+  name: "ResetPassword",
   components: {
-    FormBottomButton,
+    FormBottomButton
   },
   setup() {
     const authenticationStore = useAuthenticationStore();
-    const login = ref('');
-    const password = ref('');
-    function logIn(){
+    const email = ref('');
+    function reset(){
 
     }
-    return {logIn, login, password, authenticationStore}
+    return {reset, email, authenticationStore}
   }
 }
 </script>

@@ -6,10 +6,7 @@
         <form @submit.prevent="register">
           <q-input
             type="email"
-            :rules="[
-             val => val.includes('@') || 'Пожалуйста, ввдите почту',
-             val => !!val || 'Пожалуйста, введите почту'
-            ]"
+            :rules="authenticationStore.rulesForEmail"
             lazy-rules
             bg-color="cyan-1"
             class="form-input"
@@ -20,7 +17,7 @@
 
           <q-input
             type="tel"
-            :rules="[ val => (val.match(/^(\+7)[0-9]{10}$/) || val.length === 0 ) || 'Пожалуйста, введите номер телефона' ]"
+            :rules="authenticationStore.rulesForPhoneNumber"
             lazy-rules
             mask="+7###########"
             bg-color="cyan-1"
@@ -33,11 +30,7 @@
           <q-input
             type="text"
             lazy-rules
-            :rules="[
-              val => val.match(/^[a-zA-Z ]{0,255}$/) || 'Имя может содержать только латиницу',
-              val => val.length <= 20 || 'Имя не должно быть длиннее 20 символов',
-              val => !!val || 'Пожалуйста, введит имя'
-            ]"
+            :rules="authenticationStore.rulesForUserName"
             bg-color="cyan-1"
             class="form-input"
             outlined
@@ -48,10 +41,7 @@
           <q-input
             type="password"
             lazy-rules
-            :rules="[
-              val => val.length > 5 || 'Пароль не должно быть короче 6 символов',
-              val => !!val || 'Пожалуйста, введит пароль'
-            ]"
+            :rules="authenticationStore.rulesForPassword"
             bg-color="cyan-1"
             class="form-input"
             outlined
@@ -97,44 +87,49 @@
 <script>
 import FormBottomButton from "../components/FormBottomButton.vue";
 import axios from "axios";
+import { useRouter, useRoute } from 'vue-router'
+import { useAuthenticationStore } from "../stores/authentication.js";
+import { ref } from "vue";
 
 export default {
   name: "Registration",
   components: {
     FormBottomButton,
   },
-  data() {
-    return {
-      email: '',
-      phoneNumber: '',
-      userName: '',
-      password: '',
-      userExist: false
-    }
-  },
-  methods: {
-    register() {
-      axios.post(import.meta.env.VITE_REGISTER_URL,{
-        "phone": this.phoneNumber,
-        "email": this.email,
-        "password": this.password,
-        "username": this.userName
+  setup() {
+    const authenticationStore = useAuthenticationStore();
+    const email = ref('');
+    const phoneNumber = ref('');
+    const userName = ref('');
+    const password = ref('');
+    let userExist = ref(false);
+
+    function register() {
+      axios.post(import.meta.env.VITE_REGISTER_URL, {
+        "phone": phoneNumber,
+        "email": email,
+        "password": password,
+        "username": userName
       })
-       .then((response) => {
-          this.$router.push({ name: 'verify', params: { username: this.userName }})
-       })
-       .catch((error) => {
-         if (error.response.status == '422') {
-           this.userExist = true;
-         } else {
-           alert('Произошла ошибка, попробуйте еще раз позже')
-         }
-       });
-    },
-    retryRegister() {
-      this.$router.push({ name: 'registration'});
-      this.userExist = false;
+        .then((response) => {
+          this.$router.push({name: 'verify', params: {username: userName}})
+        })
+        .catch((error) => {
+          if (error.response.status == '422') {
+            this.userExist = true;
+          } else {
+            alert('Произошла ошибка, попробуйте еще раз позже')
+          }
+        });
     }
+    const router = useRouter()
+
+    function retryRegister() {
+      router.push({name: 'registration'});
+      userExist = false;
+    }
+
+    return {register, retryRegister, email, phoneNumber, userName, password, userExist, authenticationStore}
   }
 }
 </script>

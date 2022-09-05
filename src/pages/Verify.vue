@@ -33,21 +33,15 @@
 
 <script>
 import axios from "axios";
-
+import {ref} from "vue";
 
 export default {
   name: "Verify",
   components: {
   },
-  data() {
-    return {
-      code: '',
-      userName: '',
-      successRegistered: false
-    }
-  },
-  methods: {
-    verify() {
+  setup() {
+    const successRegistered = ref(false);
+    function verify() {
       axios.post(import.meta.env.VITE_VERIFY_URL,{
         "username": this.$route.query.user,
         "code": this.$route.params.code
@@ -59,6 +53,8 @@ export default {
          alert("Произошла ошибка")
        });
     }
+
+    return {verify}
   }
 }
 </script>
