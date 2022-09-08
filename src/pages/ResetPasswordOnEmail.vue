@@ -1,20 +1,9 @@
 <template>
   <q-page>
-    <q-card class="my-card">
+    <q-card v-if="successReset" class="my-card">
       <q-card-section>
-        <p>Войдите в свой аккаунт: </p>
-        <form @submit.prevent="logIn">
-          <q-input
-            v-maska="authenticationStore.loginMask"
-            type="text"
-            v-model="login"
-            :rules="authenticationStore.rulesForEmail"
-            lazy-rules
-            bg-color="cyan-1"
-            class="form-input"
-            outlined
-            label="Телефон или email">
-          </q-input>
+        <p>ВВедите новый пароль: </p>
+        <form @submit.prevent="reset">
 
           <q-input
             type="password"
@@ -30,7 +19,7 @@
           <q-btn
             type="submit"
             color="primary"
-            label="Продолжить"
+            label="Сменить пароль"
             class="full-width form-button"
           ></q-btn>
         </form>
@@ -38,30 +27,40 @@
         <form-bottom-button></form-bottom-button>
       </q-card-section>
     </q-card>
+
+    <q-card v-else class="my-card">
+      <q-card-section>
+        <p>Вы успешно сменили пароль</p>
+          <q-btn
+            color="primary"
+            label="Перейти на страницу входа"
+            class="full-width form-button"
+            @click="this.$router.push({ name: 'authorization'})"
+          ></q-btn>
+      </q-card-section>
+    </q-card>
   </q-page>
 </template>
 
 <script>
 import FormBottomButton from "../components/FormBottomButton.vue";
-
-import { useAuthenticationStore } from "../stores/authentication";
-
-import { ref } from 'vue'
-import { maska } from 'maska'
+import { useAuthenticationStore } from "../stores/authentication.js";
+import { ref } from "vue";
+import { maska } from "maska";
 
 export default {
-  name: "Authorization",
+  name: "ResetPasswordOnEmail",
   components: {
-    FormBottomButton,
+    FormBottomButton
   },
   setup() {
     const authenticationStore = useAuthenticationStore();
-    const login = ref('');
     const password = ref('');
-    function logIn(){
+    const successReset = ref('false');
+    function reset(){
 
     }
-    return {logIn, login, password, authenticationStore}
+    return { reset, password, successReset, authenticationStore }
   },
   directives: { maska }
 }

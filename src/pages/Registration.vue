@@ -3,10 +3,11 @@
     <q-card class="my-card">
       <q-card-section>
         <p>Зарегестрируйтесь чтобы начать работать: </p>
-        <form @submit.prevent="register">
+        <form @submit.prevent="axiosRequest.registerUser(phoneNumber, email, password, userName)">
           <q-input
             type="email"
             :rules="authenticationStore.rulesForEmail"
+            v-maska="authenticationStore.emailMask"
             lazy-rules
             bg-color="cyan-1"
             class="form-input"
@@ -19,7 +20,7 @@
             type="tel"
             :rules="authenticationStore.rulesForPhoneNumber"
             lazy-rules
-            mask="+7###########"
+            v-maska="authenticationStore.phoneNumberMask"
             bg-color="cyan-1"
             class="form-input"
             outlined
@@ -87,9 +88,11 @@
 <script>
 import FormBottomButton from "../components/FormBottomButton.vue";
 import axios from "axios";
-import { useRouter, useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { useAuthenticationStore } from "../stores/authentication.js";
+import { useAxiosRequestsStore } from "../stores/axiosRequest.js";
 import { ref } from "vue";
+import { maska } from "maska";
 
 export default {
   name: "Registration",
@@ -98,30 +101,13 @@ export default {
   },
   setup() {
     const authenticationStore = useAuthenticationStore();
+    const axiosRequest = useAxiosRequestsStore();
     const email = ref('');
     const phoneNumber = ref('');
     const userName = ref('');
     const password = ref('');
     let userExist = ref(false);
 
-    function register() {
-      axios.post(import.meta.env.VITE_REGISTER_URL, {
-        "phone": phoneNumber,
-        "email": email,
-        "password": password,
-        "username": userName
-      })
-        .then((response) => {
-          this.$router.push({name: 'verify', params: {username: userName}})
-        })
-        .catch((error) => {
-          if (error.response.status == '422') {
-            this.userExist = true;
-          } else {
-            alert('Произошла ошибка, попробуйте еще раз позже')
-          }
-        });
-    }
     const router = useRouter()
 
     function retryRegister() {
@@ -129,8 +115,9 @@ export default {
       userExist = false;
     }
 
-    return {register, retryRegister, email, phoneNumber, userName, password, userExist, authenticationStore}
-  }
+    return {retryRegister, email, phoneNumber, userName, password, userExist, axiosRequest, authenticationStore}
+  },
+  directives: { maska }
 }
 </script>
 

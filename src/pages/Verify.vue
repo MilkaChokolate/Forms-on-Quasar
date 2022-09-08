@@ -2,8 +2,8 @@
   <q-page v-if="!successRegistered">
     <q-card class="my-card">
       <q-card-section>
-        <p>Подтверлить регстрацию:</p>
-        <form @submit.prevent="verify">
+        <p>Подтвердить регстрацию:</p>
+        <form @submit.prevent="axiosRequest.verifyRegistration(this.$route.query.user, this.$route.params.code)">
           <q-btn
             type="submit"
             color="primary"
@@ -34,6 +34,7 @@
 <script>
 import axios from "axios";
 import {ref} from "vue";
+import {useAxiosRequestsStore} from "../stores/axiosRequest.js";
 
 export default {
   name: "Verify",
@@ -41,20 +42,9 @@ export default {
   },
   setup() {
     const successRegistered = ref(false);
-    function verify() {
-      axios.post(import.meta.env.VITE_VERIFY_URL,{
-        "username": this.$route.query.user,
-        "code": this.$route.params.code
-      })
-       .then((response) => {
-          this.successRegistered = true;
-       })
-       .catch((error) => {
-         alert("Произошла ошибка")
-       });
-    }
+    const axiosRequest = useAxiosRequestsStore();
 
-    return {verify}
+    return {successRegistered, axiosRequest}
   }
 }
 </script>
