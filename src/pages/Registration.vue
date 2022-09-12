@@ -1,5 +1,5 @@
 <template>
-  <q-page v-if="!userExist">
+  <q-page>
     <q-card class="my-card">
       <q-card-section>
         <p>Зарегестрируйтесь чтобы начать работать: </p>
@@ -63,26 +63,6 @@
     </q-card>
   </q-page>
 
-  <q-page v-else>
-    <q-card class="my-card">
-      <q-card-section>
-        <p>Такой пользователь уже существует</p>
-          <q-btn
-            color="primary"
-            label="Перейти на страницу входа"
-            class="full-width form-button"
-            @click="this.$router.push({ name: 'authorization'})"
-          ></q-btn>
-          <q-btn
-            color="primary"
-            label="Попробовать зарегистрироваться еще раз"
-            class="full-width form-button"
-            @click="retryRegister"
-          ></q-btn>
-      </q-card-section>
-    </q-card>
-  </q-page>
-
 </template>
 
 <script>
@@ -106,16 +86,10 @@ export default {
     const phoneNumber = ref('');
     const userName = ref('');
     const password = ref('');
-    let userExist = ref(false);
 
     const router = useRouter()
 
-    function retryRegister() {
-      router.push({name: 'registration'});
-      userExist = false;
-    }
-
-    return {retryRegister, email, phoneNumber, userName, password, userExist, axiosRequest, authenticationStore}
+    return { email, phoneNumber, userName, password, axiosRequest, authenticationStore }
   },
   directives: { maska }
 }

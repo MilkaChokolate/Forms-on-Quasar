@@ -2,7 +2,7 @@
   <q-page>
     <q-card class="my-card">
       <q-card-section>
-        <h6>Возникли сложности со входом?</h6>
+        <h6>Забыли пароль или хотите сменить его?</h6>
         <p>Мы отправим вам ссылку для воостановления</p>
         <form @submit.prevent="axiosRequest.resetPassword(email)">
           <q-input
@@ -40,7 +40,7 @@ import axios from "axios";
 import {useAxiosRequestsStore} from "../stores/axiosRequest.js";
 
 export default {
-  name: "ResetPassword",
+  name: "ResetOrChangePassword",
   components: {
     FormBottomButton
   },

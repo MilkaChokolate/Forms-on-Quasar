@@ -37,7 +37,7 @@ import {ref} from "vue";
 import {useAxiosRequestsStore} from "../stores/axiosRequest.js";
 
 export default {
-  name: "Verify",
+  name: "VerifyOnEmail",
   components: {
   },
   setup() {

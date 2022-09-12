@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 export const useAuthenticationStore = defineStore({
   id: 'authenticationStore',
   state: () => ({
+    token: localStorage.getItem('JWTtoken'),
     rulesForEmail: [
       val => val.includes('@') || 'Пожалуйста, ввдите электронную почту',
       val => !!val || 'Пожалуйста, введите электронную почту'
