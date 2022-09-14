@@ -1,30 +1,15 @@
 <template>
-  <q-page v-if="!successRegistered">
+  <q-page>
     <q-card class="my-card">
       <q-card-section>
-        <p>Подтвердить регстрацию:</p>
-        <form @submit.prevent="axiosRequest.verifyRegistration(this.$route.query.user, this.$route.params.code)">
-          <q-btn
-            type="submit"
+        <p>Вы успешно зарегистрированы.</p>
+        <p>Перейти к работе:</p>
+        <q-btn
             color="primary"
-            label="Подтвердить"
-            class="full-width form-button"
-          ></q-btn>
-        </form>
-      </q-card-section>
-    </q-card>
-  </q-page>
-
-  <q-page v-else>
-    <q-card class="my-card">
-      <q-card-section>
-        <p>Вы успешно зарегистрировались</p>
-          <q-btn
-            color="primary"
-            label="Перейти на страницу входа"
+            label="Войти в аккаунт"
             class="full-width form-button"
             @click="this.$router.push({ name: 'authorization'})"
-          ></q-btn>
+        ></q-btn>
       </q-card-section>
     </q-card>
   </q-page>
@@ -32,8 +17,8 @@
 </template>
 
 <script>
-import axios from "axios";
-import {ref} from "vue";
+
+import {ref, onMounted} from "vue";
 import {useAxiosRequestsStore} from "../stores/axiosRequest.js";
 
 export default {
@@ -43,8 +28,11 @@ export default {
   setup() {
     const successRegistered = ref(false);
     const axiosRequest = useAxiosRequestsStore();
+    onMounted(() => {
+      axiosRequest.verifyRegistration(this.$route.query.user, this.$route.params.code)
+    })
 
-    return {successRegistered, axiosRequest}
+    return {successRegistered}
   }
 }
 </script>
