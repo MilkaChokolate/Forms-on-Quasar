@@ -3,7 +3,7 @@
     <q-card v-if="successReset" class="my-card">
       <q-card-section>
         <p>Введите новый пароль: </p>
-        <form @submit.prevent="reset">
+        <form @submit.prevent="axiosRequest.change(this.$route.params.code, this.$route.query.user, password)">
 
           <q-input
             type="password"
@@ -47,6 +47,7 @@ import FormBottomButton from "../components/FormBottomButton.vue";
 import { useAuthenticationStore } from "../stores/authentication.js";
 import { ref } from "vue";
 import { maska } from "maska";
+import {useAxiosRequestsStore} from "../stores/axiosRequest.js";
 
 export default {
   name: "ResetPasswordOnEmail",
@@ -55,12 +56,10 @@ export default {
   },
   setup() {
     const authenticationStore = useAuthenticationStore();
+    const axiosRequest = useAxiosRequestsStore();
     const password = ref('');
     const successReset = ref('false');
-    function reset(){
-
-    }
-    return { reset, password, successReset, authenticationStore }
+    return { password, successReset, authenticationStore, axiosRequest }
   },
   directives: { maska }
 }
