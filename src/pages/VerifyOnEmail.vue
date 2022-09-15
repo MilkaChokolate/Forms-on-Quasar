@@ -19,7 +19,7 @@
 <script>
 
 import {ref, onMounted} from "vue";
-import {useAxiosRequestsStore} from "../stores/axiosRequest.js";
+import useAxios from "../composables/authentication.js"
 
 export default {
   name: "VerifyOnEmail",
@@ -27,9 +27,9 @@ export default {
   },
   setup() {
     const successRegistered = ref(false);
-    const axiosRequest = useAxiosRequestsStore();
+    const requests = useAxios();
     onMounted(() => {
-      axiosRequest.verifyRegistration(this.$route.query.user, this.$route.params.code)
+      requests.verifyRegistration(this.$route.query.user, this.$route.params.code)
     })
 
     return {successRegistered}

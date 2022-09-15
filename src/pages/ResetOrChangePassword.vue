@@ -4,7 +4,7 @@
       <q-card-section>
         <h6>Забыли пароль или хотите сменить его?</h6>
         <p>Мы отправим вам ссылку для воостановления</p>
-        <form @submit.prevent="axiosRequest.resetPassword(email)">
+        <form @submit.prevent="requests.resetPassword(email)">
           <q-input
             type="text"
             v-model="email"
@@ -36,8 +36,7 @@ import FormBottomButton from "../components/FormBottomButton.vue";
 import { useAuthenticationStore } from "../stores/authentication.js";
 import { ref } from "vue";
 import { maska } from "maska";
-import axios from "axios";
-import {useAxiosRequestsStore} from "../stores/axiosRequest.js";
+import useAxios from "../composables/authentication.js"
 
 export default {
   name: "ResetOrChangePassword",
@@ -45,22 +44,11 @@ export default {
     FormBottomButton
   },
   setup() {
+    const requests = useAxios();
     const authenticationStore = useAuthenticationStore();
-    const axiosRequest = useAxiosRequestsStore();
     const email = ref('');
 
-    function reset() {
-      axios.post(import.meta.env.VITE_RESET_URL, {
-        "email": email.value
-      })
-        .then((response) => {
-          alert('Мы отправили сообщение вам на почту')
-        })
-        .catch((error) => {
-          alert('Произошла ошибка, попробуйте еще раз позже')
-        });
-    }
-    return {reset, email, authenticationStore, axiosRequest}
+    return { requests, email, authenticationStore }
   },
   directives: { maska }
 }

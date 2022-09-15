@@ -1,9 +1,9 @@
 <template>
 <q-page>
-    <q-card v-if="successReset" class="my-card">
+    <q-card  class="my-card">
       <q-card-section>
         <p>Введите новый пароль: </p>
-        <form @submit.prevent="axiosRequest.change(this.$route.params.code, this.$route.query.user, password)">
+        <form @submit.prevent="requests.change(this.$route.params.code, this.$route.query.user, password)">
 
           <q-input
             type="password"
@@ -27,26 +27,14 @@
         <form-bottom-button></form-bottom-button>
       </q-card-section>
     </q-card>
-
-    <q-card v-else class="my-card">
-      <q-card-section>
-        <p>Вы успешно сменили пароль</p>
-          <q-btn
-            color="primary"
-            label="Перейти на страницу входа"
-            class="full-width form-button"
-            @click="this.$router.push({ name: 'authorization'})"
-          ></q-btn>
-      </q-card-section>
-    </q-card>
-  </q-page>
+</q-page>
 </template>
 
 <script>
 import FormBottomButton from "../components/FormBottomButton.vue";
 
+import useAxios from "../composables/authentication.js"
 import {useAuthenticationStore} from "../stores/authentication.js";
-import {useAxiosRequestsStore} from "../stores/axiosRequest.js";
 import {ref} from "vue";
 
 export default {
@@ -56,9 +44,9 @@ export default {
   },
   setup() {
     const password = ref('');
+    const requests = useAxios();
     const authenticationStore = useAuthenticationStore();
-    const axiosRequest = useAxiosRequestsStore();
-    return { password, authenticationStore, axiosRequest }
+    return { password, authenticationStore, requests }
   }
 }
 </script>

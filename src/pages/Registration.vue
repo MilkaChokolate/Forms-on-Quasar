@@ -3,7 +3,7 @@
     <q-card class="my-card">
       <q-card-section>
         <p>Зарегестрируйтесь чтобы начать работать: </p>
-        <form @submit.prevent="axiosRequest.registerUser(phoneNumber, email, password, userName)">
+        <form @submit.prevent="requests.registerUser(phoneNumber, email, password, userName)">
           <q-input
             type="email"
             :rules="authenticationStore.rulesForEmail"
@@ -67,12 +67,10 @@
 
 <script>
 import FormBottomButton from "../components/FormBottomButton.vue";
-import axios from "axios";
-import { useRouter } from 'vue-router'
 import { useAuthenticationStore } from "../stores/authentication.js";
-import { useAxiosRequestsStore } from "../stores/axiosRequest.js";
 import { ref } from "vue";
 import { maska } from "maska";
+import useAxios from "../composables/authentication.js"
 
 export default {
   name: "Registration",
@@ -81,15 +79,13 @@ export default {
   },
   setup() {
     const authenticationStore = useAuthenticationStore();
-    const axiosRequest = useAxiosRequestsStore();
+    const requests = useAxios();
     const email = ref('');
     const phoneNumber = ref('');
     const userName = ref('');
     const password = ref('');
 
-    const router = useRouter()
-
-    return { email, phoneNumber, userName, password, axiosRequest, authenticationStore }
+    return { email, phoneNumber, userName, password, requests, authenticationStore }
   },
   directives: { maska }
 }
