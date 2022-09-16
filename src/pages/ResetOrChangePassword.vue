@@ -4,7 +4,7 @@
       <q-card-section>
         <h6>Забыли пароль или хотите сменить его?</h6>
         <p>Мы отправим вам ссылку для воостановления</p>
-        <form @submit.prevent="requests.resetPassword(email)">
+        <form @submit.prevent="resetPassword(email)">
           <q-input
             type="text"
             v-model="email"
@@ -36,7 +36,7 @@ import FormBottomButton from "../components/FormBottomButton.vue";
 import { useAuthenticationStore } from "../stores/authentication.js";
 import { ref } from "vue";
 import { maska } from "maska";
-import useAxios from "../composables/authentication.js"
+import { resetPassword } from "../composables/authentication.js"
 
 export default {
   name: "ResetOrChangePassword",
@@ -44,11 +44,10 @@ export default {
     FormBottomButton
   },
   setup() {
-    const requests = useAxios();
     const authenticationStore = useAuthenticationStore();
     const email = ref('');
 
-    return { requests, email, authenticationStore }
+    return { resetPassword, email, authenticationStore }
   },
   directives: { maska }
 }

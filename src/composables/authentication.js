@@ -1,8 +1,8 @@
-import axios from "axios";
+import authInstance from "../axios/authInstance.js";
 
-export default function useAxios() {
-  function registerUser(phoneNumber, email, password, userName) {
-    axios.post(import.meta.env.VITE_REGISTER_URL, {
+
+  export function registerUser(phoneNumber, email, password, userName) {
+    authInstance.post('register', {
       "phone": phoneNumber,
       "email": email,
       "password": password,
@@ -20,8 +20,8 @@ export default function useAxios() {
     });
   }
 
-  function resetPassword(email) {
-    axios.post(import.meta.env.VITE_RESET_URL, {
+  export function resetPassword(email) {
+    authInstance.post('reset', {
       "email": email
     })
     .then((response) => {
@@ -32,8 +32,8 @@ export default function useAxios() {
     });
   }
 
-  function verifyRegistration(userName, code) {
-    axios.post(import.meta.env.VITE_VERIFY_URL,{
+  export function verifyRegistration(userName, code) {
+    authInstance.post('verify',{
       "username": userName,
       "code": code
     })
@@ -45,8 +45,8 @@ export default function useAxios() {
      });
   }
 
-  function login(login, password){
-    axios.post(import.meta.env.VITE_LOGIN_URL,{
+  export function logIn(login, password){
+    authInstance.post('login',{
       "login": login,
       "password": password
     })
@@ -59,8 +59,8 @@ export default function useAxios() {
      });
   }
 
-  function change(userName, code, password) {
-    axios.post(import.meta.env.VITE_CHANGE_URL,{
+  export function change(userName, code, password) {
+    authInstance().post('change',{
       "code": code,
       "username": userName,
       "password": password
@@ -72,15 +72,3 @@ export default function useAxios() {
        alert("Произошла ошибка")
      });
   }
-
-  return {
-    registerUser,
-    resetPassword,
-    verifyRegistration,
-    login,
-    change
-  }
-
-
-
-}

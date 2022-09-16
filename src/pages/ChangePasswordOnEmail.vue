@@ -3,7 +3,7 @@
     <q-card  class="my-card">
       <q-card-section>
         <p>Введите новый пароль: </p>
-        <form @submit.prevent="requests.change(this.$route.params.code, this.$route.query.user, password)">
+        <form @submit.prevent="change(this.$route.params.code, this.$route.query.user, password)">
 
           <q-input
             type="password"
@@ -33,9 +33,9 @@
 <script>
 import FormBottomButton from "../components/FormBottomButton.vue";
 
-import useAxios from "../composables/authentication.js"
-import {useAuthenticationStore} from "../stores/authentication.js";
-import {ref} from "vue";
+import { change } from '../composables/authentication.js'
+import { useAuthenticationStore } from "../stores/authentication.js";
+import { ref } from "vue";
 
 export default {
   name: "ChangePasswordOnEmail",
@@ -44,9 +44,8 @@ export default {
   },
   setup() {
     const password = ref('');
-    const requests = useAxios();
     const authenticationStore = useAuthenticationStore();
-    return { password, authenticationStore, requests }
+    return { password, authenticationStore, change }
   }
 }
 </script>

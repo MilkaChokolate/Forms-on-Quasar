@@ -3,7 +3,7 @@
     <q-card class="my-card">
       <q-card-section>
         <p>Войдите в свой аккаунт: </p>
-        <form @submit.prevent="requests.login(login, password)">
+        <form @submit.prevent="logIn(login, password)">
           <q-input
             v-maska="authenticationStore.loginMask"
             type="text"
@@ -45,8 +45,7 @@
 import FormBottomButton from "../components/FormBottomButton.vue";
 
 import { useAuthenticationStore } from "../stores/authentication";
-import useAxios from "../composables/authentication.js"
-
+import { logIn } from '../composables/authentication.js'
 import { ref } from 'vue'
 import { maska } from 'maska'
 
@@ -56,11 +55,10 @@ export default {
     FormBottomButton,
   },
   setup() {
-    const requests = useAxios();
     const authenticationStore = useAuthenticationStore();
     const login = ref('');
     const password = ref('');
-    return {login, password, authenticationStore, requests }
+    return {login, password, authenticationStore, logIn }
   },
   directives: { maska }
 }
