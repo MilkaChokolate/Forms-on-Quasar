@@ -8,48 +8,55 @@ import changePasswordOnEmail from "../pages/ChangePasswordOnEmail.vue";
 import ResetOrChangePassword from "../pages/ResetOrChangePassword.vue";
 import SentEmailMassage from "../pages/Messeges/SentEmailMassage.vue";
 import SuccessMessage from "../pages/Messeges/SuccessMessage.vue";
+import AuthenticationLayout from "../layouts/AuthenticationLayout.vue";
 
 const routes = [
-    {
+  {
+    path: '/authentication',
+    component: AuthenticationLayout,
+    children: [
+      {
         path: '/authentication/register',
         component: Registration,
         name: 'registration'
-    },
-    {
+      },
+      {
         path: '/authentication/login',
         component: Authorization,
         name: 'authorization'
-    },
-    {
+      },
+      {
         path: '/authentication/verify/:code?user=:username',
         component: VerifyOnEmail,
         name: 'verify-on-email'
-    },
-    {
+      },
+      {
         path: '/authentication/reset',
         component: ResetOrChangePassword,
         name: 'reset-or-change'
-    },
-    {
+      },
+      {
         path: '/authentication/reset/:code?user=:username',
         component: ResetPasswordOnEmail,
         name: 'reset-password-on-email'
-    },
-    {
+      },
+      {
         path: '/authentication/reset',
         component: changePasswordOnEmail,
         name: 'change-on-email'
-    },
-    {
+      },
+      {
         path: '/authentication/sent-massage-on-email',
         component: SentEmailMassage,
         name: 'sent-massage-on-email'
-    },
-    {
+      },
+      {
         path: '/authentication/success-message',
         component: SuccessMessage,
         name: 'success-message'
-    },
+      }
+    ]
+  }
 ]
 
 const router = createRouter({
