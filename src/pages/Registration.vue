@@ -6,8 +6,8 @@
         <form @submit.prevent="registerUser(phoneNumber, email, password, userName)">
           <q-input
             type="email"
-            :rules="authenticationStore.rulesForEmail"
-            v-maska="authenticationStore.emailMask"
+            :rules="rulesForEmail"
+            v-maska="emailMask"
             lazy-rules
             bg-color="cyan-1"
             class="form-input"
@@ -18,9 +18,9 @@
 
           <q-input
             type="tel"
-            :rules="authenticationStore.rulesForPhoneNumber"
+            :rules="rulesForPhoneNumber"
             lazy-rules
-            v-maska="authenticationStore.phoneNumberMask"
+            v-maska="phoneNumberMask"
             bg-color="cyan-1"
             class="form-input"
             outlined
@@ -31,7 +31,7 @@
           <q-input
             type="text"
             lazy-rules
-            :rules="authenticationStore.rulesForUserName"
+            :rules="rulesForUserName"
             bg-color="cyan-1"
             class="form-input"
             outlined
@@ -42,7 +42,7 @@
           <q-input
             type="password"
             lazy-rules
-            :rules="authenticationStore.rulesForPassword"
+            :rules="rulesForPassword"
             bg-color="cyan-1"
             class="form-input"
             outlined
@@ -67,10 +67,10 @@
 
 <script>
 import FormBottomButton from "../components/FormBottomButton.vue";
-import { useAuthenticationStore } from "../stores/authentication.js";
+import { phoneNumberMask, rulesForPhoneNumber, rulesForUserName, rulesForEmail, emailMask, rulesForPassword } from "../composables/validationAndRules.js";
 import { ref } from "vue";
 import { maska } from "maska";
-import { registerUser } from '../composables/authentication.js'
+import { registerUser } from '../composables/authenticationRequests.js'
 
 export default {
   name: "Registration",
@@ -78,13 +78,24 @@ export default {
     FormBottomButton,
   },
   setup() {
-    const authenticationStore = useAuthenticationStore();
     const email = ref('');
     const phoneNumber = ref('');
     const userName = ref('');
     const password = ref('');
 
-    return { email, phoneNumber, userName, password, registerUser, authenticationStore }
+    return {
+      email,
+      phoneNumber,
+      userName,
+      password,
+      registerUser,
+      phoneNumberMask,
+      rulesForUserName,
+      rulesForPhoneNumber,
+      rulesForPassword,
+      rulesForEmail,
+      emailMask,
+    }
   },
   directives: { maska }
 }

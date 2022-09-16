@@ -18,8 +18,8 @@
 
 <script>
 
-import {ref, onMounted} from "vue";
-import { verifyRegistration } from '../composables/authentication.js'
+import { ref, onMounted } from "vue";
+import { verifyRegistration } from '../composables/authenticationRequests.js'
 
 export default {
   name: "VerifyOnEmail",

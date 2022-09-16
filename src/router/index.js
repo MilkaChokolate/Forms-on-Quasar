@@ -6,8 +6,8 @@ import VerifyOnEmail from "../pages/VerifyOnEmail.vue";
 import ResetPasswordOnEmail from "../pages/ResetPasswordOnEmail.vue";
 import changePasswordOnEmail from "../pages/ChangePasswordOnEmail.vue";
 import ResetOrChangePassword from "../pages/ResetOrChangePassword.vue";
-import SentEmailMassage from "../pages/SentEmailMassage.vue";
-import SuccessMessage from "../pages/SuccessMessage.vue";
+import SentEmailMassage from "../pages/Messeges/SentEmailMassage.vue";
+import SuccessMessage from "../pages/Messeges/SuccessMessage.vue";
 
 const routes = [
     {

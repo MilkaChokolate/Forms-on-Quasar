@@ -8,7 +8,7 @@
           <q-input
             type="password"
             lazy-rules
-            :rules="authenticationStore.rulesForPassword"
+            :rules="rulesForPassword"
             bg-color="cyan-1"
             class="form-input"
             outlined
@@ -33,8 +33,8 @@
 <script>
 import FormBottomButton from "../components/FormBottomButton.vue";
 
-import { change } from '../composables/authentication.js'
-import { useAuthenticationStore } from "../stores/authentication.js";
+import { change } from '../composables/authenticationRequests.js'
+import { rulesForPassword } from "../composables/validationAndRules.js";
 import { ref } from "vue";
 
 export default {
@@ -44,8 +44,7 @@ export default {
   },
   setup() {
     const password = ref('');
-    const authenticationStore = useAuthenticationStore();
-    return { password, authenticationStore, change }
+    return { password, rulesForPassword, change }
   }
 }
 </script>

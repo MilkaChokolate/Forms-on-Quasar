@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import FormBottomButton from "../components/FormBottomButton.vue";
+import FormBottomButton from "../../components/FormBottomButton.vue";
 
 export default {
   name: "ChangedPasswordMassage",

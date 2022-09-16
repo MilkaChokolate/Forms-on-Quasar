@@ -8,8 +8,8 @@
           <q-input
             type="text"
             v-model="email"
-            :rules="authenticationStore.rulesForEmail"
-            v-maska="authenticationStore.emailMask"
+            :rules="rulesForEmail"
+            v-maska="emailMask"
             lazy-rules
             bg-color="cyan-1"
             class="form-input"
@@ -33,10 +33,10 @@
 
 <script>
 import FormBottomButton from "../components/FormBottomButton.vue";
-import { useAuthenticationStore } from "../stores/authentication.js";
+import { rulesForEmail, emailMask } from "../composables/validationAndRules.js";
 import { ref } from "vue";
 import { maska } from "maska";
-import { resetPassword } from "../composables/authentication.js"
+import { resetPassword } from "../composables/authenticationRequests.js"
 
 export default {
   name: "ResetOrChangePassword",
@@ -44,10 +44,9 @@ export default {
     FormBottomButton
   },
   setup() {
-    const authenticationStore = useAuthenticationStore();
     const email = ref('');
 
-    return { resetPassword, email, authenticationStore }
+    return { resetPassword, email, rulesForEmail, emailMask }
   },
   directives: { maska }
 }

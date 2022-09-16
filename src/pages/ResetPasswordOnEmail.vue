@@ -8,7 +8,7 @@
           <q-input
             type="password"
             lazy-rules
-            :rules="authenticationStore.rulesForPassword"
+            :rules="rulesForPassword"
             bg-color="cyan-1"
             class="form-input"
             outlined
@@ -44,10 +44,10 @@
 
 <script>
 import FormBottomButton from "../components/FormBottomButton.vue";
-import { useAuthenticationStore } from "../stores/authentication.js";
+import { rulesForPassword } from "../composables/validationAndRules.js";
 import { ref } from "vue";
 import { maska } from "maska";
-import { change } from '../composables/authentication.js'
+import { change } from '../composables/authenticationRequests.js'
 
 export default {
   name: "ResetPasswordOnEmail",
@@ -55,10 +55,9 @@ export default {
     FormBottomButton
   },
   setup() {
-    const authenticationStore = useAuthenticationStore();
     const password = ref('');
     const successReset = ref('false');
-    return { password, successReset, authenticationStore, change }
+    return { password, successReset, rulesForPassword, change }
   },
   directives: { maska }
 }

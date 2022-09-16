@@ -5,10 +5,10 @@
         <p>Войдите в свой аккаунт: </p>
         <form @submit.prevent="logIn(login, password)">
           <q-input
-            v-maska="authenticationStore.loginMask"
+            v-maska="loginMask"
             type="text"
             v-model="login"
-            :rules="authenticationStore.rulesForEmail"
+            :rules="rulesForEmail"
             lazy-rules
             bg-color="cyan-1"
             class="form-input"
@@ -19,7 +19,7 @@
           <q-input
             type="password"
             lazy-rules
-            :rules="authenticationStore.rulesForPassword"
+            :rules="rulesForPassword"
             bg-color="cyan-1"
             class="form-input"
             outlined
@@ -44,8 +44,8 @@
 <script>
 import FormBottomButton from "../components/FormBottomButton.vue";
 
-import { useAuthenticationStore } from "../stores/authentication";
-import { logIn } from '../composables/authentication.js'
+import { logIn } from '../composables/authenticationRequests.js'
+import { loginMask, rulesForEmail, rulesForPassword } from "../composables/validationAndRules.js";
 import { ref } from 'vue'
 import { maska } from 'maska'
 
@@ -55,10 +55,9 @@ export default {
     FormBottomButton,
   },
   setup() {
-    const authenticationStore = useAuthenticationStore();
     const login = ref('');
     const password = ref('');
-    return {login, password, authenticationStore, logIn }
+    return {login, password, loginMask, rulesForPassword, rulesForEmail, logIn }
   },
   directives: { maska }
 }

@@ -1,27 +1,20 @@
-import { defineStore } from 'pinia'
-
-export const useAuthenticationStore = defineStore({
-  id: 'authenticationStore',
-  state: () => ({
-    rulesForEmail: [
+export const rulesForEmail = [
       val => val.includes('@') || 'Пожалуйста, ввдите электронную почту',
       val => !!val || 'Пожалуйста, введите электронную почту'
-    ],
-    rulesForPhoneNumber: [
+    ];
+export const rulesForPhoneNumber = [
       val => (val.match(/^(\+7)[0-9]{10}$/) || val.length === 0 ) || 'Пожалуйста, введите номер телефона'
-    ],
-    rulesForUserName: [
+    ];
+export const rulesForUserName = [
       val => val.match(/^[a-zA-Z ]{0,255}$/) || 'Имя может содержать только латиницу',
       val => val.length <= 20 || 'Имя не должно быть длиннее 20 символов',
       val => !!val || 'Пожалуйста, введите имя'
-    ],
-    rulesForPassword: [
+    ];
+export const rulesForPassword = [
       val => val.length > 5 || 'Пароль не должно быть короче 6 символов',
       val => !!val || 'Пожалуйста, введите пароль'
-    ],
-    loginMask: {mask: ['H*!@H*.H*', '+7##########'], tokens: { 'H': { pattern: /./}}},
-    emailMask: {mask: 'H*!@H*.H*', tokens: { 'H': { pattern: /./}}},
-    phoneNumberMask: "+7##########",
-    userNameMask: 'S*'
-  })
-})
+    ];
+export const loginMask = {mask: ['H*!@H*.H*', '+7##########'], tokens: { 'H': { pattern: /./}}};
+export const emailMask = {mask: 'H*!@H*.H*', tokens: { 'H': { pattern: /./}}};
+export const phoneNumberMask = "+7##########";
+export const userNameMask = 'S*';
