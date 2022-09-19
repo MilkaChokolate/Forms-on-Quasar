@@ -5,6 +5,7 @@
         <p>Войдите в свой аккаунт: </p>
         <form @submit.prevent="logIn(login, password)">
           <q-input
+            q-my-xl
             v-maska="loginMask"
             type="text"
             v-model="login"
@@ -17,6 +18,7 @@
           </q-input>
 
           <q-input
+            q-py-xl
             type="password"
             lazy-rules
             :rules="rulesForPassword"

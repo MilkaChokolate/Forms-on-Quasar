@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const authInstance = axios.create({
-  baseURL: 'https://photo.dedos.ru/api/authentication/',
+  baseURL: import.meta.env.VITE_BASEURL,
   headers: {
     Accept: 'application/json'
   }
