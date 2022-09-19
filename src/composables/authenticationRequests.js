@@ -12,11 +12,7 @@ import authInstance from "../axios/authInstance.js";
       this.$router.push({name: 'sent-massage-on-email'})
     })
     .catch((error) => {
-      if (error.response.status === 422) {
-        alert('Такой пользователь уже есть')
-      } else {
         alert('Произошла ошибка, попробуйте еще раз позже')
-      }
     });
   }
 
