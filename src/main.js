@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import { Quasar } from 'quasar'
 import './style.css'
 import App from './App.vue'
-import router from "/src/router/index";
+import router from './router'
 import Maska from 'maska'
 import { createPinia } from 'pinia'
 
