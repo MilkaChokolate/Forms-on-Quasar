@@ -1,4 +1,5 @@
 import authInstance from "../axios/authInstance.js";
+import { Notify } from 'quasar'
 
 
   export function registerUser(phoneNumber, email, password, userName) {
@@ -12,7 +13,12 @@ import authInstance from "../axios/authInstance.js";
       this.$router.push({name: 'sent-massage-on-email'})
     })
     .catch((error) => {
-        alert('Произошла ошибка, попробуйте еще раз позже')
+      Notify.create({
+        message: error.response.data.message,
+        position: 'center',
+        multiLine: true,
+        type: 'negative',
+      })
     });
   }
 
@@ -24,7 +30,12 @@ import authInstance from "../axios/authInstance.js";
       this.$router.push({ name: 'sent-massage-on-email'})
     })
     .catch((error) => {
-      alert('Произошла ошибка, попробуйте еще раз позже')
+      Notify.create({
+        message: error.response.data.message,
+        position: 'center',
+        multiLine: true,
+        type: 'negative',
+      })
     });
   }
 
@@ -37,7 +48,12 @@ import authInstance from "../axios/authInstance.js";
        this.$router.push({ name: 'success-message'})
      })
      .catch((error) => {
-       alert("Произошла ошибка")
+       Notify.create({
+        message: error.response.data.message,
+        position: 'center',
+        multiLine: true,
+        type: 'negative',
+      })
      });
   }
 
@@ -51,7 +67,12 @@ import authInstance from "../axios/authInstance.js";
        localStorage.setItem('JWTtoken', response.data.token);
      })
      .catch((error) => {
-       alert("Произошла ошибка")
+       Notify.create({
+        message: error.response.data.message,
+        position: 'center',
+        multiLine: true,
+        type: 'negative',
+      })
      });
   }
 
@@ -65,6 +86,11 @@ import authInstance from "../axios/authInstance.js";
        this.$router.push({ name: 'success-message'})
      })
      .catch((error) => {
-       alert("Произошла ошибка")
+       Notify.create({
+        message: error.response.data.message,
+        position: 'center',
+        multiLine: true,
+        type: 'negative',
+      })
      });
   }
