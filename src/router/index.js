@@ -26,7 +26,7 @@ const routes = [
         name: 'authorization'
       },
       {
-        path: '/authentication/verify/:code?user=:username',
+        path: '/authentication/verify',
         component: VerifyOnEmail,
         name: 'verify-on-email'
       },
