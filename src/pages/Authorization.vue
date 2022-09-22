@@ -9,7 +9,7 @@
             v-maska="loginMask"
             type="text"
             v-model="login"
-            :rules="rulesForEmail"
+            :rules="rulesForLogin"
             lazy-rules
             bg-color="cyan-1"
             class="form-input"
@@ -47,7 +47,7 @@
 import FormBottomButton from "../components/FormBottomButton.vue";
 
 import { logIn } from '../composables/authenticationRequests.js'
-import { loginMask, rulesForEmail, rulesForPassword } from "../composables/validationAndRules.js";
+import { loginMask, rulesForLogin, rulesForPassword } from "../composables/validationAndRules.js";
 import { ref } from 'vue'
 import { maska } from 'maska'
 
@@ -59,7 +59,7 @@ export default {
   setup() {
     const login = ref('');
     const password = ref('');
-    return {login, password, loginMask, rulesForPassword, rulesForEmail, logIn }
+    return {login, password, loginMask, rulesForPassword, rulesForLogin, logIn }
   },
   directives: { maska }
 }

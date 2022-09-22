@@ -14,6 +14,10 @@ export const rulesForPassword = [
       val => val.length > 5 || 'Пароль не должно быть короче 6 символов',
       val => !!val || 'Пожалуйста, введите пароль'
     ];
+export const rulesForLogin = [
+      val => (val.includes('@') || val.match(/^(\+7)[0-9]{10}$/)) ||  'Пароль не должно быть короче 6 символов',
+      val => !!val || 'Пожалуйста, введите логин'
+    ];
 export const loginMask = {mask: ['H*!@H*.H*', '+7##########'], tokens: { 'H': { pattern: /./}}};
 export const emailMask = {mask: 'H*!@H*.H*', tokens: { 'H': { pattern: /./}}};
 export const phoneNumberMask = "+7##########";
