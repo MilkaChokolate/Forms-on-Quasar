@@ -63,7 +63,12 @@ import { Notify } from 'quasar'
       "password": password
     })
      .then((response) => {
-       alert('Вы вошли');
+       Notify.create({
+        message: 'Вы вошли',
+        position: 'top',
+        multiLine: true,
+        type: 'negative',
+      })
        localStorage.setItem('JWTtoken', response.data.token);
      })
      .catch((error) => {
