@@ -35,7 +35,7 @@
             color="primary"
             label="Перейти на страницу входа"
             class="full-width form-button"
-            @click="this.$router.push({ name: 'authorization'})"
+            :to="{ name: 'authorization'}"
           ></q-btn>
       </q-card-section>
     </q-card>

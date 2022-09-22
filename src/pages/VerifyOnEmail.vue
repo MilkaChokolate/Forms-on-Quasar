@@ -8,7 +8,7 @@
             color="primary"
             label="Войти в аккаунт"
             class="full-width form-button"
-            @click="this.$router.push({ name: 'authorization'})"
+            :to="{ name: 'authorization'}"
         ></q-btn>
       </q-card-section>
     </q-card>

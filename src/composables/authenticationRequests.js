@@ -67,7 +67,7 @@ import { Notify } from 'quasar'
         message: 'Вы вошли',
         position: 'top',
         multiLine: true,
-        type: 'negative',
+        type: 'info',
       })
        localStorage.setItem('JWTtoken', response.data.token);
      })
