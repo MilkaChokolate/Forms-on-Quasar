@@ -3,7 +3,8 @@ export const rulesForEmail = [
       val => !!val || 'Пожалуйста, введите электронную почту'
     ];
 export const rulesForPhoneNumber = [
-      val => (val.match(/^(\+7)[0-9]{10}$/) || val.length === 0 ) || 'Пожалуйста, введите номер телефона'
+      val => (val.match(/^(\+7)[0-9]{10}$/)) || 'Пожалуйста, введите номер телефона',
+      val => !!val || 'Пожалуйста, введите номер телефона'
     ];
 export const rulesForUserName = [
       val => val.match(/^[a-zA-Z ]{0,255}$/) || 'Имя может содержать только латиницу',

@@ -1,5 +1,6 @@
 import authInstance from "../axios/authInstance.js";
 import { Notify } from 'quasar'
+import router from "../router/index.js";
 
 
   export function registerUser(phoneNumber, email, password, userName) {
@@ -10,7 +11,7 @@ import { Notify } from 'quasar'
       "username": userName
     })
     .then((response) => {
-      this.$router.push({name: 'sent-massage-on-email'})
+      router.push({name: 'sent-massage-on-email'})
     })
     .catch((error) => {
       Notify.create({
@@ -23,11 +24,12 @@ import { Notify } from 'quasar'
   }
 
   export function resetPassword(email) {
+    console.log(router)
     authInstance.post('reset', {
       "email": email
     })
     .then((response) => {
-      this.$router.push({ name: 'sent-massage-on-email'})
+      router.push({ name: 'sent-massage-on-email'})
     })
     .catch((error) => {
       Notify.create({
@@ -45,7 +47,7 @@ import { Notify } from 'quasar'
       "code": code
     })
      .then((response) => {
-       this.$router.push({ name: 'success-message'})
+       router.push({ name: 'success-message'})
      })
      .catch((error) => {
        Notify.create({
@@ -88,7 +90,7 @@ import { Notify } from 'quasar'
       "password": password
     })
      .then((response) => {
-       this.$router.push({ name: 'success-message'})
+       router.push({ name: 'success-message'})
      })
      .catch((error) => {
        Notify.create({

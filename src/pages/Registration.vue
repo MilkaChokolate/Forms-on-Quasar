@@ -25,7 +25,7 @@
             class="form-input"
             outlined
             v-model="phoneNumber"
-            label="Номер телефона(не обязательно)">
+            label="Номер телефона">
           </q-input>
 
           <q-input
