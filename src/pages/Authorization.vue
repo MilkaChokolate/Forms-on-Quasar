@@ -12,7 +12,7 @@
             :rules="rulesForLogin"
             lazy-rules
             bg-color="cyan-1"
-            class="form-input"
+            class="q-mb-sm"
             outlined
             label="Телефон или email">
           </q-input>
@@ -23,7 +23,7 @@
             lazy-rules
             :rules="rulesForPassword"
             bg-color="cyan-1"
-            class="form-input"
+            class="q-mb-sm"
             outlined
             v-model="password"
             label="Пароль">

@@ -10,7 +10,7 @@
             lazy-rules
             :rules="rulesForPassword"
             bg-color="cyan-1"
-            class="form-input"
+            class="q-mb-sm"
             outlined
             v-model="password"
             label="Пароль">

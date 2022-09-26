@@ -10,7 +10,7 @@
             v-maska="emailMask"
             lazy-rules
             bg-color="cyan-1"
-            class="form-input"
+            class="q-mb-sm"
             outlined
             v-model="email"
             label="Адрес электронной почты">
@@ -22,7 +22,7 @@
             lazy-rules
             v-maska="phoneNumberMask"
             bg-color="cyan-1"
-            class="form-input"
+            class="q-mb-sm"
             outlined
             v-model="phoneNumber"
             label="Номер телефона">
@@ -33,7 +33,7 @@
             lazy-rules
             :rules="rulesForUserName"
             bg-color="cyan-1"
-            class="form-input"
+            class="q-mb-sm"
             outlined
             v-model="userName"
             label="Имя">
@@ -44,7 +44,7 @@
             lazy-rules
             :rules="rulesForPassword"
             bg-color="cyan-1"
-            class="form-input"
+            class="q-mb-sm"
             outlined
             v-model="password"
             label="Пароль">
