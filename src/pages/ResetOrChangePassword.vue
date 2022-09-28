@@ -4,9 +4,10 @@
       <q-card-section>
         <h6>Забыли пароль или хотите сменить его?</h6>
         <p>Мы отправим вам ссылку для воостановления</p>
-        <form @submit.prevent="resetPassword(email)">
+        <form @submit.prevent="onSubmit">
           <q-input
             type="text"
+            ref="emailRef"
             v-model="email"
             :rules="rulesForEmail"
             v-maska="emailMask"
@@ -45,8 +46,15 @@ export default {
   },
   setup() {
     const email = ref('');
+    const emailRef = ref(null);
+    function onSubmit() {
+      emailRef.value.validate();
+      if (!emailRef.value.hasError) {
+        resetPassword(email)
+      }
+    }
 
-    return { resetPassword, email, rulesForEmail, emailMask }
+    return { onSubmit, email, emailRef, rulesForEmail, emailMask }
   },
   directives: { maska }
 }

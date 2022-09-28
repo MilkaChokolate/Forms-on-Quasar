@@ -24,7 +24,6 @@ import router from "../router/index.js";
   }
 
   export function resetPassword(email) {
-    console.log(router)
     authInstance.post('reset', {
       "email": email
     })
