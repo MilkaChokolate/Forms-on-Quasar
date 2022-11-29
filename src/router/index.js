@@ -36,7 +36,7 @@ const routes = [
         name: 'reset-or-change'
       },
       {
-        path: '/authentication/reset/:code?user=:username',
+        path: '/authentication/reset/:1234?user=:test',
         component: ResetPasswordOnEmail,
         name: 'reset-password-on-email'
       },

@@ -13,7 +13,19 @@
             class="q-mb-sm"
             outlined
             v-model="password"
-            label="Пароль">
+            label="Новый пароль">
+          </q-input>
+
+          <p>Повторите новый пароль: </p>
+          <q-input
+            type="password"
+            lazy-rules
+            :rules="rulesForPassword"
+            bg-color="cyan-1"
+            class="q-mb-sm"
+            outlined
+            v-model="password"
+            label="Новый пароль">
           </q-input>
 
           <q-btn
